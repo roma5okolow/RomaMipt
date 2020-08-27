@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #define UNDEF_ROOT -1
+#define BORDER 0.000001
 
 //-----------------------------------------------------------------------------
 //! Solves a square equation ax2+bx+c = 0
@@ -51,7 +52,7 @@ int Eq_Sol (double a, double b, double c,
         {
         double D = b*b - 4*a*c;
 
-        if (D == 0)
+        if (BORDER >= D >= -BORDER)
             {
             *x1 = *x2 = -b / (2*a);
             }
