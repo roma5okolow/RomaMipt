@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #define UNDEF_ROOT -1
-#define BORDER 0.000001
+#define BORDER 1e-20
 
 //-----------------------------------------------------------------------------
 //! Solves a square equation ax2+bx+c = 0
@@ -24,8 +24,6 @@ int Eq_Sol (double a, double b, double c,
             double* x1, double* x2)
     {
 
-    printf("%p\n", x1);
-
     assert(isfinite(a));
     assert(isfinite(b));
     assert(isfinite(c));
@@ -36,11 +34,11 @@ int Eq_Sol (double a, double b, double c,
 
 
 
-    if (a == 0)
+    if (BORDER >= a && a >= -BORDER)
         {
-        if (b == 0)
+        if (BORDER >= b && b >= -BORDER)
             {
-            return (c == 0) ? UNDEF_ROOT: 0;
+            return (BORDER >= c && c >= -BORDER) ? UNDEF_ROOT: 0;
             }
         else
             {
@@ -52,11 +50,14 @@ int Eq_Sol (double a, double b, double c,
         {
         double D = b*b - 4*a*c;
 
-        if (BORDER >= D >= -BORDER)
+        if (BORDER >= D && D >= -BORDER)
             {
             *x1 = *x2 = -b / (2*a);
+            return 1;
             }
-        else
+        else if(D <= -BORDER)
+            {
+            return 0;
             {
             *x1 = (-b + sqrt(D)) / (2*a);
             *x2 = (-b - sqrt(D)) / (2*a);
@@ -66,8 +67,18 @@ int Eq_Sol (double a, double b, double c,
     }
 
 //-----------------------------------------------------------------------------
+//! Print roots of equation
+//! @param [in]  Num_Roots
+//! @param [in]  x1
+//! @param [in]  x2
+//!
+//!
+//! in case of infinite number of roots,
+//! returns UNDEF_ROOT.
+//-----------------------------------------------------------------------------
 
 int Print_Roots (int Num_Roots, double x1, double x2)
+
     {
     switch (Num_Roots)
         {
@@ -83,7 +94,7 @@ int Print_Roots (int Num_Roots, double x1, double x2)
         case UNDEF_ROOT: printf ("Any number\n");
             break;
 
-        default: printf ("Error: Num_Roots = %lg", Num_Roots);
+        default: printf ("Error: Num_Roots = %d", Num_Roots);
             return 1;
         }
     }
@@ -96,15 +107,23 @@ int main()
     printf("Enter a, b, c: ");
 
     double a=0, b=0, c=0;
-    scanf ("%lg %lg %lg", &a, &b, &c);
+
+    int GoodRead = 0;
+    do
+    {
+        printf("Enter a, b, c: ");
+        GoodRead = scanf ("%lg %lg %lg", &a, &b, &c);
+        fflush(stdin);
+
+    }while (GoodRead != 3);
 
     double x1 = 0, x2 = 0;
-    printf("%p\n", &x1);
+
     int Num_Roots = Eq_Sol (a, b, c, &x1, &x2);
 
-    int Print_Roots;
+    Print_Roots(Num_Roots, x1, x2);
 
-        return 0;
+    return 0;
     }
 //-----------------------------------------------------------------------------
 
