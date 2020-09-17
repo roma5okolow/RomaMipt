@@ -59,8 +59,6 @@ void Print_Roots (int Num_Roots, double x1, double x2);
 
 int main()
     {
-    Solution_Checker();
-    return 0;
     printf("Square equation solver\n");
 
     double a = 0, b = 0, c = 0;
