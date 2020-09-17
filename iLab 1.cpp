@@ -59,7 +59,8 @@ void Print_Roots (int Num_Roots, double x1, double x2);
 
 int main()
     {
-
+    Solution_Checker();
+    return 0;
     printf("Square equation solver\n");
 
     double a = 0, b = 0, c = 0;
@@ -176,53 +177,28 @@ void Print_Roots (int Num_Roots, double x1, double x2)
 
 void Solution_Checker()
     {
+    FILE *input;
+    input = fopen("in.txt", "r");
 
     double x1 = 0, x2 = 0;
+    int    exp_Num_Roots;
+    double exp_x1;
+    double exp_x2;
+    double a;
+    double b;
+    double c;
 
-    #define CHECKER                                                                          \
-        if ((Sq_Eq_Sol (a, b, c, &x1, &x2)) != exp_Num_Roots || x1 != exp_x1 || x2 != exp_x2)   \
-            printf("Error, false roots (a = %d, b = %d, c = %d)\n", a, b, c);                \
-        else                                                                                 \
-            {                                                                                \
-            printf("True\n");                                                                \
-            x1 = x2 = 0;                                                                     \
+    #define CHECKER                                                                           \
+        if ((Sq_Eq_Sol (a, b, c, &x1, &x2)) != exp_Num_Roots || x1 != exp_x1 || x2 != exp_x2) \
+            printf("Error, false roots (a = %d, b = %d, c = %d)\n", a, b, c);                 \
+        else                                                                                  \
+            {                                                                                 \
+            printf("True\n");                                                                 \
+            x1 = x2 = 0;                                                                      \
             }
 
-    int    exp_Num_Roots =  2;
-    double exp_x1        = -1;
-    double exp_x2        = -2;
-    int    a             =  1;
-    int    b             =  3;
-    int    c             =  2;
-
-    CHECKER;
-
-    exp_Num_Roots =    1;
-    exp_x1        = -0.5;
-    exp_x2        = -0.5;
-    a             =    4;
-    b             =    4;
-    c             =    1;
-
-    CHECKER;
-
-    exp_Num_Roots =    0;
-    exp_x1        =    0;
-    exp_x2        =    0;
-    a             =    2;
-    b             =    1;
-    c             =    5;
-
-    CHECKER;
-
-    exp_Num_Roots =    UNDEF_ROOT;
-    exp_x1        =    0;
-    exp_x2        =    0;
-    a             =    0;
-    b             =    0;
-    c             =    0;
-
-    CHECKER;
+    while (fscanf(input, "%d %lg %lg %lg %lg %lg", &exp_Num_Roots, &exp_x1, &exp_x2, &a, &b, &c) > 0)
+        CHECKER;
     }
 
 //-----------------------------------------------------------------------------
