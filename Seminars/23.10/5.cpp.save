@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main()
+    {
+
+    char c;
+    char s[10] = "";
+
+
+    printf("Enter char: ");
+
+    c = getchar();
+
+    scanf("%s", s);
+    puts(s);
+
+    char* adr1 = strchr(s, c);
+
+    if (adr == NULL)
+        printf("NULL");
+
+    else
+        *adr = '*';
+        
+    char* adr2 = strrchr(s, c);
+    
+    
+
+    puts(s);
+    }
