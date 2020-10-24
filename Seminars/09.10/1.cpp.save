@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+    {
+
+    int x, y, a, b, h, z, h1;
+
+    printf("Enter a, b, h, z, h1: ");
+
+    scanf("%d %d %d %d %d", &a, &b, &h, &z, &h1);
+
+    x = a;
+    y = z;
+
+    while(x <= b)
+        {
+        printf("sin(x + y) = %lg\n", sin(x+y));
+        x += h;
+        y += h1;
+        }
+    return 0;
+    }

@@ -1,0 +1,4 @@
+void f ( int b)
+   {
+   extern int a;
+   

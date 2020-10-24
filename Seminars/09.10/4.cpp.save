@@ -1,0 +1,28 @@
+#include <stdio.h>
+ 
+int main()
+    {
+    int left  = 1,
+        right = 1,
+        p = 0,
+        n = 1;
+        
+    
+    do 
+        {
+        
+        p *= 10 + n;
+        
+        left = 9 * p + (n+1);
+        
+        right = right * 10 + 1;
+        
+        printf("n = %d left = %d right = %d\n", n, left, right); 
+        
+        n++;
+        
+        }while(x == y); 
+    
+        
+    
+    }

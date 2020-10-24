@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+
+double sin (double x, double* sk [], double E);
+
+int main()
+    {
+
+    double x = 0;
+    double E = 0;
+
+    double sk[20] = {0};
+
+    printf("Enter x, E");
+
+    scanf("%lg %lg", &x, &E);
+
+    printf("sin x = ", sin(x, sk, E));
+
+    return 0;
+    }
+
+double sin (double x, double* sk [], double E)
+    {
+    int i = 0;
+
+    sk [0] = x;
+
+    do
+    {
+
+    i++;
+
+    sk[i] = -sk[i-1]*x*x/(2*i+1)/(2*i+2);
+
+    x += sk[i];
+
+    }while(fabs(sk) <= E);
+
+    return x;
+    }
