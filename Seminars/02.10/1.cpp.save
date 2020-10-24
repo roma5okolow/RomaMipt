@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int a = 0;
+
+int main()
+    {
+         
+        printf("a = %d b = %d", a, b);
+
+
+    }
+int test()
+    {
+    
+    int c = 9;
+    
+    }
