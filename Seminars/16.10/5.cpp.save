@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+void PrintMatrix (int(*a)[3]);
+void swap (int* a, int* b);
+
+int main()
+    {
+    int a[3][3] = {{4,5,6}, {7,8,9}, {1,2,3}};
+
+    int x = 0,
+        y = 0;
+
+    printf("Your old matrix: \n");
+
+    PrintMatrix (a);
+
+    for (y = 0; y < 3; y++)
+        {
+        for (x = y; x < 3; x++)
+            swap(&a[x][y], &a[y][x]);
+        }
+    printf("\n\n Your transp matrix: \n");
+
+    PrintMatrix (a);
+    
+    printf("This is function swap: \n");
+    printf("a = %d, b = %d\n        \
+            swap: a = %
+            
+
+    }
+
+void swap (int* a, int* b)
+    {
+
+    int c = 0;
+
+    *a = c;
+    *a = *b;
+    *b = c;
+    }
+
+void PrintMatrix (int(*a)[3])
+    {
+    int x = 0,
+        y = 0;
+
+    for (y = 0; y < 3; y++)
+        {
+        for (x = 0; x < 3; x++)
+            printf ("a%u%u = %u ",y, x, a[y][x]);
+
+        printf("\n");
+        }
+    }
+
